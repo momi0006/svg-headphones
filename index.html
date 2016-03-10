@@ -1,0 +1,74 @@
+<!-- DOCTYPE -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home</title>
+  <meta charset="utf-8">
+  <!-- Viewport Meta Tag -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="main.css">
+  <style>
+		#textStatus{
+			font-size: 2rem;
+			font-family: sans-serif;
+		}
+	</style>
+</head>
+<body>
+	<object data="headphone.svg" type="image/svg+xml" id="svg" width="45%" height="45%"></object>
+	<br>
+	<font id="textStatus">Music is playing. Click to turn off the music.</font>
+	<script>
+		var a = document.getElementById("svg");
+        a.addEventListener("load",function(){
+            var svgDoc = a.contentDocument; 
+						svgDoc.getElementById("onOff").style.display="none";
+            var delta = svgDoc.getElementById("headphoneStatus"); 
+					
+						var playing = true;
+            
+					
+					delta.addEventListener("mouseover", function(){
+						if(playing){
+							svgDoc.getElementById("onOff").style.display="block";
+						}
+						else{
+							svgDoc.getElementById("onOff").style.display="none";
+						}
+					}, false);
+					
+					
+					delta.addEventListener("mousedown",function(){
+							if(svgDoc.getElementById("onOff").style.display=="block"){
+								playing=false;
+								document.getElementById("textStatus").innerHTML="Music is not playing. Click to turn on the music.";
+							}
+							else{
+								playing=true;
+								document.getElementById("textStatus").innerHTML="Music is playing. Click to turn off the music.";
+							}
+						},false);
+					
+					
+					delta.addEventListener("mouseleave", function(){
+						
+						if(playing){
+							svgDoc.getElementById("onOff").style.display="none";
+						}
+						else{
+							svgDoc.getElementById("onOff").style.display="block";
+						}
+					},false);
+					
+					
+					
+				}, false);
+		
+		/*a.addEventListener("mouseover", function(){
+			var svgDoc = a.contentDocument;
+			var initialStatus = svgDoc.getElementById("onOff").style.display;
+			alert(initialStatus);
+		}, false);*/
+	</script>
+</body>
+</html>
